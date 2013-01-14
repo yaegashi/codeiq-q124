@@ -47,7 +47,7 @@ p3decode() {
 encode() {
         test $# -lt 2 && abort "Usage: $0 plain.txt source.png >embedded.png"
         exec 8<&0
-        od -An -tu1 "$1" | p3split | (
+        od -v -An -tu1 "$1" | p3split | (
                 exec 9<&0 <&8 8<&-
                 pngtopnm "$2" | pnmtoplainpnm | p3split | p3encode | pnmtopng
         )
